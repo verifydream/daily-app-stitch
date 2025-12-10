@@ -7,6 +7,9 @@ import OnboardingWelcomeScreen from '../screens/OnboardingWelcomeScreen';
 import OnboardingFinanceScreen from '../screens/OnboardingFinanceScreen';
 import OnboardingProductivityScreen from '../screens/OnboardingProductivityScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
+import MainTabNavigator from './MainTabNavigator';
+import TodoListScreen from '../screens/TodoListScreen';
+import ActivityDetailScreen from '../screens/ActivityDetailScreen';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -14,6 +17,9 @@ export type RootStackParamList = {
   OnboardingFinance: undefined;
   OnboardingProductivity: undefined;
   Registration: undefined;
+  Main: undefined;
+  TodoList: undefined;
+  ActivityDetail: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -22,7 +28,7 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="OnboardingWelcome"
+        initialRouteName="Main"
         screenOptions={{
           headerShown: false,
         }}
@@ -41,6 +47,9 @@ const AppNavigator = () => {
         />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Registration" component={RegistrationScreen} />
+        <Stack.Screen name="Main" component={MainTabNavigator} />
+        <Stack.Screen name="TodoList" component={TodoListScreen} />
+        <Stack.Screen name="ActivityDetail" component={ActivityDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
