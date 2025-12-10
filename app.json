@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "daily-app-stitch",
+    "slug": "daily-app-stitch",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.verifydream.dailyappstitch"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.verifydream.dailyappstitch"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
