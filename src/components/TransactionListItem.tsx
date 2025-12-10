@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, useColorScheme } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { colors } from '../styles/colors';
+import { getThemeColors } from '../styles/colors';
 
 interface TransactionListItemProps {
-  iconName: string;
+  iconName: keyof typeof MaterialIcons.glyphMap;
   category: string;
   type: 'Pemasukan' | 'Pengeluaran';
   amount: string;
@@ -22,8 +22,8 @@ const TransactionListItem: React.FC<TransactionListItemProps> = ({
   iconBackgroundColor,
   iconColor,
 }) => {
-  const colorScheme = useColorScheme() ?? 'light';
-  const themeColors = colors[colorScheme];
+  const colorScheme = useColorScheme();
+  const themeColors = getThemeColors(colorScheme);
   const isIncome = type === 'Pemasukan';
 
   return (

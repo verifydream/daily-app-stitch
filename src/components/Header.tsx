@@ -7,7 +7,7 @@ import {
   useColorScheme,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { colors } from '../styles/colors';
+import { getThemeColors } from '../styles/colors';
 
 interface HeaderProps {
   title: string;
@@ -20,8 +20,8 @@ const Header: React.FC<HeaderProps> = ({
   onBackPress,
   rightComponent,
 }) => {
-  const colorScheme = useColorScheme() ?? 'light';
-  const themeColors = colors[colorScheme];
+  const colorScheme = useColorScheme();
+  const themeColors = getThemeColors(colorScheme);
 
   return (
     <View

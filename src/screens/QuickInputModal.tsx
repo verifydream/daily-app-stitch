@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { MaterialIcons } from '@expo/vector-icons';
-import { colors } from '../styles/colors';
+import { getThemeColors } from '../styles/colors';
 
 interface QuickInputModalProps {
   visible: boolean;
@@ -20,27 +20,31 @@ const QuickInputModal: React.FC<QuickInputModalProps> = ({
   visible,
   onClose,
 }) => {
-  const colorScheme = useColorScheme() ?? 'light';
-  const themeColors = colors[colorScheme];
+  const colorScheme = useColorScheme();
+  const themeColors = getThemeColors(colorScheme);
 
-  const actions = [
-    {
-      label: 'Catat Pengeluaran',
-      icon: 'arrow-downward',
-      color: themeColors.expense,
-    },
-    {
-      label: 'Catat Pemasukan',
-      icon: 'arrow-upward',
-      color: themeColors.income,
-    },
-    { label: 'Catat Activity Log', icon: 'history', color: themeColors.primary },
-    {
-      label: 'Catat To-Do List',
-      icon: 'edit-calendar',
-      color: themeColors.primary,
-    },
-  ];
+  const actions: Array<{
+    label: string;
+    icon: 'arrow-downward' | 'arrow-upward' | 'history' | 'edit-calendar';
+    color: string;
+  }> = [
+      {
+        label: 'Catat Pengeluaran',
+        icon: 'arrow-downward',
+        color: themeColors.expense,
+      },
+      {
+        label: 'Catat Pemasukan',
+        icon: 'arrow-upward',
+        color: themeColors.income,
+      },
+      { label: 'Catat Activity Log', icon: 'history', color: themeColors.primary },
+      {
+        label: 'Catat To-Do List',
+        icon: 'edit-calendar',
+        color: themeColors.primary,
+      },
+    ];
 
   return (
     <Modal

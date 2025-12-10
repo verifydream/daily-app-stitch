@@ -9,13 +9,13 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
-import { colors } from '../styles/colors';
+import { getThemeColors, colors } from '../styles/colors';
 import ActivityListItem from '../components/ActivityListItem';
 import Header from '../components/Header';
 
 const ActivityLogScreen = () => {
-  const colorScheme = useColorScheme() ?? 'light';
-  const themeColors = colors[colorScheme];
+  const colorScheme = useColorScheme();
+  const themeColors = getThemeColors(colorScheme);
 
   const activityGroups = [
     {

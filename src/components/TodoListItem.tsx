@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, useColorScheme } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { colors } from '../styles/colors';
+import { getThemeColors } from '../styles/colors';
 
 type TodoStatus = 'Terlambat' | 'Pending' | 'Selesai';
 
@@ -22,8 +22,8 @@ const TodoListItem: React.FC<TodoListItemProps> = ({
   isCompleted,
   onToggleComplete,
 }) => {
-  const colorScheme = useColorScheme() ?? 'light';
-  const themeColors = colors[colorScheme];
+  const colorScheme = useColorScheme();
+  const themeColors = getThemeColors(colorScheme);
 
   const statusColors = {
     Terlambat: {

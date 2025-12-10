@@ -10,13 +10,13 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { colors } from '../styles/colors';
+import { getThemeColors, colors } from '../styles/colors';
 import ActivityListItem from '../components/ActivityListItem';
 
 const DashboardScreen = () => {
   const navigation = useNavigation();
-  const colorScheme = useColorScheme() ?? 'light';
-  const themeColors = colors[colorScheme];
+  const colorScheme = useColorScheme();
+  const themeColors = getThemeColors(colorScheme);
 
   const recentActivities = [
     {

@@ -10,35 +10,39 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
-import { colors } from '../styles/colors';
+import { getThemeColors } from '../styles/colors';
 
 const ProfileScreen = () => {
-  const colorScheme = useColorScheme() ?? 'light';
-  const themeColors = colors[colorScheme];
+  const colorScheme = useColorScheme();
+  const themeColors = getThemeColors(colorScheme);
 
-  const menuItems = [
-    {
-      icon: 'person-outline',
-      label: 'Edit Profil',
-      color: themeColors.primary,
-    },
-    {
-      icon: 'settings',
-      label: 'Pengaturan Aplikasi',
-      color: themeColors.primary,
-    },
-    {
-      icon: 'category',
-      label: 'Manajemen Kategori',
-      color: themeColors.primary,
-    },
-    {
-      icon: 'help-outline',
-      label: 'Bantuan & Dukungan',
-      color: themeColors.primary,
-    },
-    { icon: 'logout', label: 'Keluar', color: themeColors.danger },
-  ];
+  const menuItems: Array<{
+    icon: 'person-outline' | 'settings' | 'category' | 'help-outline' | 'logout';
+    label: string;
+    color: string;
+  }> = [
+      {
+        icon: 'person-outline',
+        label: 'Edit Profil',
+        color: themeColors.primary,
+      },
+      {
+        icon: 'settings',
+        label: 'Pengaturan Aplikasi',
+        color: themeColors.primary,
+      },
+      {
+        icon: 'category',
+        label: 'Manajemen Kategori',
+        color: themeColors.primary,
+      },
+      {
+        icon: 'help-outline',
+        label: 'Bantuan & Dukungan',
+        color: themeColors.primary,
+      },
+      { icon: 'logout', label: 'Keluar', color: themeColors.danger },
+    ];
 
   return (
     <SafeAreaView

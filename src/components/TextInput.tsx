@@ -58,7 +58,7 @@ const TextInput: React.FC<TextInputProps> = ({
           onPress={() => setIsPasswordVisible(!isPasswordVisible)}
         >
           <MaterialIcons
-            name={isPasswordVisible ? 'visibility' a: 'visibility-off'}
+            name={isPasswordVisible ? 'visibility' : 'visibility-off'}
             size={22}
             color={iconColor}
           />

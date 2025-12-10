@@ -9,55 +9,63 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
-import { colors } from '../styles/colors';
+import { getThemeColors, colors } from '../styles/colors';
 import TransactionListItem from '../components/TransactionListItem';
 
 const FinanceScreen = () => {
-  const colorScheme = useColorScheme() ?? 'light';
-  const themeColors = colors[colorScheme];
+  const colorScheme = useColorScheme();
+  const themeColors = getThemeColors(colorScheme);
 
-  const transactions = [
-    {
-      iconName: 'account-balance-wallet',
-      category: 'Gaji Bulanan',
-      type: 'Pemasukan',
-      amount: 'Rp 5.250.000',
-      date: '1 Juli',
-      iconBackgroundColor:
-        colorScheme === 'light' ? '#dcfce7' : 'rgba(16, 185, 129, 0.2)',
-      iconColor: colors.light.income,
-    },
-    {
-      iconName: 'shopping-cart',
-      category: 'Belanja Bulanan',
-      type: 'Pengeluaran',
-      amount: 'Rp 750.000',
-      date: '2 Juli',
-      iconBackgroundColor:
-        colorScheme === 'light' ? '#fee2e2' : 'rgba(239, 68, 68, 0.2)',
-      iconColor: colors.light.expense,
-    },
-    {
-      iconName: 'receipt-long',
-      category: 'Bayar Tagihan Listrik',
-      type: 'Pengeluaran',
-      amount: 'Rp 325.500',
-      date: '5 Juli',
-      iconBackgroundColor:
-        colorScheme === 'light' ? '#dbeafe' : 'rgba(59, 130, 246, 0.2)',
-      iconColor: '#3b82f6',
-    },
-    {
-      iconName: 'restaurant',
-      category: 'Makan Siang',
-      type: 'Pengeluaran',
-      amount: 'Rp 75.000',
-      date: '6 Juli',
-      iconBackgroundColor:
-        colorScheme === 'light' ? '#ffedd5' : 'rgba(249, 115, 22, 0.2)',
-      iconColor: '#f97316',
-    },
-  ];
+  const transactions: Array<{
+    iconName: 'account-balance-wallet' | 'shopping-cart' | 'receipt-long' | 'restaurant';
+    category: string;
+    type: 'Pemasukan' | 'Pengeluaran';
+    amount: string;
+    date: string;
+    iconBackgroundColor: string;
+    iconColor: string;
+  }> = [
+      {
+        iconName: 'account-balance-wallet',
+        category: 'Gaji Bulanan',
+        type: 'Pemasukan',
+        amount: 'Rp 5.250.000',
+        date: '1 Juli',
+        iconBackgroundColor:
+          colorScheme === 'light' ? '#dcfce7' : 'rgba(16, 185, 129, 0.2)',
+        iconColor: colors.light.income,
+      },
+      {
+        iconName: 'shopping-cart',
+        category: 'Belanja Bulanan',
+        type: 'Pengeluaran',
+        amount: 'Rp 750.000',
+        date: '2 Juli',
+        iconBackgroundColor:
+          colorScheme === 'light' ? '#fee2e2' : 'rgba(239, 68, 68, 0.2)',
+        iconColor: colors.light.expense,
+      },
+      {
+        iconName: 'receipt-long',
+        category: 'Bayar Tagihan Listrik',
+        type: 'Pengeluaran',
+        amount: 'Rp 325.500',
+        date: '5 Juli',
+        iconBackgroundColor:
+          colorScheme === 'light' ? '#dbeafe' : 'rgba(59, 130, 246, 0.2)',
+        iconColor: '#3b82f6',
+      },
+      {
+        iconName: 'restaurant',
+        category: 'Makan Siang',
+        type: 'Pengeluaran',
+        amount: 'Rp 75.000',
+        date: '6 Juli',
+        iconBackgroundColor:
+          colorScheme === 'light' ? '#ffedd5' : 'rgba(249, 115, 22, 0.2)',
+        iconColor: '#f97316',
+      },
+    ];
 
   return (
     <SafeAreaView

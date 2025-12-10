@@ -1,4 +1,5 @@
-export const colors = {
+// Theme colors object
+const themeColorValues = {
   light: {
     primary: '#14b8a6',
     secondary: '#f97316',
@@ -27,4 +28,32 @@ export const colors = {
     statusOverdue: '#ef4444',
     danger: '#ef4444',
   },
+};
+
+// Flat colors for legacy usage
+const flatColors = {
+  primary: '#14b8a6',
+  secondary: '#f97316',
+  'background-light': '#f8fafc',
+  'background-dark': '#1e293b',
+  'surface-light': '#ffffff',
+  'surface-dark': '#334155',
+  'text-primary-light': '#0f172a',
+  'text-primary-dark': '#f8fafc',
+  'text-secondary-light': '#64748b',
+  'text-secondary-dark': '#cbd5e1',
+  'border-light': '#e2e8f0',
+  'border-dark': '#475569',
+};
+
+// Combined export
+export const colors = {
+  ...themeColorValues,
+  ...flatColors,
+} as typeof themeColorValues & typeof flatColors;
+
+// Helper function to get theme colors with null safety
+export const getThemeColors = (colorScheme: 'light' | 'dark' | null | undefined) => {
+  const scheme = colorScheme ?? 'light';
+  return themeColorValues[scheme];
 };

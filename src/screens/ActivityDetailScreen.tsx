@@ -9,12 +9,12 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
-import { colors } from '../styles/colors';
+import { getThemeColors, colors } from '../styles/colors';
 import Header from '../components/Header';
 
 const ActivityDetailScreen = () => {
-  const colorScheme = useColorScheme() ?? 'light';
-  const themeColors = colors[colorScheme];
+  const colorScheme = useColorScheme();
+  const themeColors = getThemeColors(colorScheme);
 
   const RightComponent = () => (
     <View style={styles.headerActions}>
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 1,
-    backgroundColor: themeColors.background,
+    backgroundColor: '#f8fafc',
     marginVertical: 8,
   },
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet, useColorScheme } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { colors } from '../styles/colors';
+import { getThemeColors } from '../styles/colors';
 
 interface CustomTabBarProps extends BottomTabBarProps {
   onFabPress: () => void;
@@ -14,8 +14,8 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({
   navigation,
   onFabPress,
 }) => {
-  const colorScheme = useColorScheme() ?? 'light';
-  const themeColors = colors[colorScheme];
+  const colorScheme = useColorScheme();
+  const themeColors = getThemeColors(colorScheme);
 
   return (
     <View style={styles.container}>
@@ -42,10 +42,10 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({
             route.name === 'Dashboard'
               ? 'dashboard'
               : route.name === 'Finance'
-              ? 'account-balance'
-              : route.name === 'Activity'
-              ? 'checklist'
-              : 'person-outline';
+                ? 'account-balance'
+                : route.name === 'Activity'
+                  ? 'checklist'
+                  : 'person-outline';
 
           return (
             <TouchableOpacity

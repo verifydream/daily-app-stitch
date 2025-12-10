@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, useColorScheme } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { colors } from '../styles/colors';
+import { getThemeColors, colors } from '../styles/colors';
 
 interface ActivityListItemProps {
-  iconName: string;
+  iconName: keyof typeof MaterialIcons.glyphMap;
   title: string;
   category: string;
   amount?: string;
@@ -22,8 +22,8 @@ const ActivityListItem: React.FC<ActivityListItemProps> = ({
   iconBackgroundColor,
   iconColor,
 }) => {
-  const colorScheme = useColorScheme() ?? 'light';
-  const themeColors = colors[colorScheme];
+  const colorScheme = useColorScheme();
+  const themeColors = getThemeColors(colorScheme);
 
   const amountColor = amount
     ? amount.startsWith('+')

@@ -9,13 +9,23 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
-import { colors } from '../styles/colors';
+import { getThemeColors } from '../styles/colors';
 import TodoListItem from '../components/TodoListItem';
 import Header from '../components/Header';
 
 const categories = ['Semua', 'Kerja', 'Pribadi', 'Belanja', 'Urgent'];
 
-const initialTodos = [
+type TodoStatus = 'Terlambat' | 'Pending' | 'Selesai';
+
+interface TodoItem {
+  status: TodoStatus;
+  category: string;
+  title: string;
+  dueDate: string;
+  isCompleted: boolean;
+}
+
+const initialTodos: TodoItem[] = [
   {
     status: 'Terlambat',
     category: 'Kerja',
@@ -54,12 +64,12 @@ const initialTodos = [
 ];
 
 const TodoListScreen = () => {
-  const colorScheme = useColorScheme() ?? 'light';
-  const themeColors = colors[colorScheme];
+  const colorScheme = useColorScheme();
+  const themeColors = getThemeColors(colorScheme);
   const [selectedCategory, setSelectedCategory] = useState('Semua');
   const [todos, setTodos] = useState(initialTodos);
 
-  const handleToggleComplete = (index) => {
+  const handleToggleComplete = (index: number) => {
     const newTodos = [...todos];
     newTodos[index].isCompleted = !newTodos[index].isCompleted;
     newTodos[index].status = newTodos[index].isCompleted
