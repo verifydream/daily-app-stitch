@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, useColorScheme } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import { View, TouchableOpacity, StyleSheet, useColorScheme } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { colors } from '../styles/colors';
 
 interface CheckboxProps {
@@ -16,9 +16,11 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, checked, onChange }) => {
 
   return (
     <TouchableOpacity style={styles.container} onPress={() => onChange(!checked)}>
-      <View style={[styles.checkbox, checked && styles.checked]}>
-        {checked && <MaterialIcons name="check" size={14} color="#FFFFFF" />}
-      </View>
+      <MaterialCommunityIcons
+        name={checked ? 'checkbox-marked' : 'checkbox-blank-outline'}
+        size={24}
+        color={checked ? colors.primary : colors['text-secondary-light']}
+      />
       <View style={styles.labelContainer}>{label}</View>
     </TouchableOpacity>
   );
@@ -27,25 +29,10 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, checked, onChange }) => {
 const getStyles = (isDarkMode: boolean) => StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
-  },
-  checkbox: {
-    width: 20,
-    height: 20,
-    borderRadius: 6,
-    borderWidth: 2,
-    borderColor: isDarkMode ? colors['border-dark'] : colors['border-light'],
-    backgroundColor: isDarkMode ? colors['surface-dark'] : '#F3F4F6', // slate-100
-    justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 2,
-  },
-  checked: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    gap: 12,
   },
   labelContainer: {
-    marginLeft: 12,
     flex: 1,
   },
 });

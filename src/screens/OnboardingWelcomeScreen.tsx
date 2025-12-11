@@ -56,7 +56,6 @@ const OnboardingWelcomeScreen = ({ navigation }: Props) => {
           onPress={handleRegister}
           variant="primary"
         />
-        <View style={{ height: 16 }} />
         <Button title="Login" onPress={handleLogin} variant="secondary" />
         <View style={styles.pagination}>
           <View style={[styles.dot, styles.activeDot]} />
@@ -121,11 +120,12 @@ const getStyles = (isDarkMode: boolean) =>
     },
     footer: {
       padding: 32,
+      gap: 16,
     },
     pagination: {
       flexDirection: 'row',
       justifyContent: 'center',
-      marginTop: 32,
+      marginTop: 16,
     },
     dot: {
       width: 12,

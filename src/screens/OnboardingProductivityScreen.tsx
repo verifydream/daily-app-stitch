@@ -54,9 +54,7 @@ const OnboardingProductivityScreen = ({ navigation }: Props) => {
           onPress={handleStart}
           variant="primary"
         />
-        <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
-          <Text style={styles.skipButtonText}>Lewati</Text>
-        </TouchableOpacity>
+        <Button title="Lewati" onPress={handleSkip} variant="transparent" />
         <View style={styles.pagination}>
           <View style={styles.dot} />
           <View style={styles.dot} />
@@ -120,17 +118,7 @@ const getStyles = (isDarkMode: boolean) =>
     },
     footer: {
       padding: 32,
-    },
-    skipButton: {
-      marginTop: 16,
-      alignSelf: 'center',
-    },
-    skipButtonText: {
-      fontSize: 18,
-      fontWeight: '500',
-      color: isDarkMode
-        ? colors['text-secondary-dark']
-        : colors['text-secondary-light'],
+      gap: 16,
     },
     pagination: {
       flexDirection: 'row',

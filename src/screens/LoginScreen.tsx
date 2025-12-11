@@ -3,9 +3,9 @@ import {
   View,
   Text,
   StyleSheet,
-  ScrollView,
   TouchableOpacity,
   useColorScheme,
+  SafeAreaView,
 } from 'react-native';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -33,67 +33,69 @@ const LoginScreen = ({ navigation }: Props) => {
   };
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.contentContainer}
-    >
-      <View style={styles.header}>
-        <View style={styles.iconContainer}>
-          <MaterialIcons
-            name="trending-up"
-            size={48}
-            color={colors.primary}
-          />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.contentContainer}>
+        <View style={styles.header}>
+          <View style={styles.iconContainer}>
+            <MaterialIcons
+              name="trending-up"
+              size={48}
+              color={colors.primary}
+            />
+          </View>
+          <Text style={styles.title}>Login Akun</Text>
+          <Text style={styles.subtitle}>Selamat datang kembali!</Text>
         </View>
-        <Text style={styles.title}>Login Akun</Text>
-        <Text style={styles.subtitle}>Selamat datang kembali!</Text>
+
+        <View style={styles.form}>
+          <View>
+            <Text style={styles.label}>Email atau Username</Text>
+            <TextInput
+              placeholder="Masukkan email atau username"
+              value={email}
+              onChangeText={setEmail}
+            />
+          </View>
+          <View>
+            <Text style={styles.label}>Kata Sandi</Text>
+            <TextInput
+              placeholder="Masukkan kata sandi"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry
+            />
+          </View>
+
+          <TouchableOpacity
+            style={styles.forgotPassword}
+            onPress={handleForgotPassword}
+          >
+            <Text style={styles.forgotPasswordText}>Lupa Kata Sandi?</Text>
+          </TouchableOpacity>
+
+          <Button title="Login" onPress={handleLogin} />
+        </View>
+
+        <View style={styles.dividerContainer}>
+          <View style={styles.dividerLine} />
+          <Text style={styles.dividerText}>atau login dengan</Text>
+          <View style={styles.dividerLine} />
+        </View>
+
+        <View style={styles.socialLoginContainer}>
+          <TouchableOpacity style={styles.socialButton}>
+            <MaterialCommunityIcons name="google" size={24} color="#DB4437" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialButton}>
+            <MaterialCommunityIcons
+              name="github"
+              size={24}
+              color={isDarkMode ? '#FFFFFF' : '#000000'}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
-
-      <View style={styles.form}>
-        <TextInput
-          placeholder="Email atau Username"
-          value={email}
-          onChangeText={setEmail}
-          leftIcon="email"
-        />
-        <View style={{ height: 16 }} />
-        <TextInput
-          placeholder="Kata Sandi"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-          leftIcon="lock"
-        />
-
-        <TouchableOpacity
-          style={styles.forgotPassword}
-          onPress={handleForgotPassword}
-        >
-          <Text style={styles.forgotPasswordText}>Lupa Kata Sandi?</Text>
-        </TouchableOpacity>
-
-        <Button title="Login" onPress={handleLogin} />
-      </View>
-
-      <View style={styles.dividerContainer}>
-        <View style={styles.dividerLine} />
-        <Text style={styles.dividerText}>atau login dengan</Text>
-        <View style={styles.dividerLine} />
-      </View>
-
-      <View style={styles.socialLoginContainer}>
-        <TouchableOpacity style={styles.socialButton}>
-          <MaterialCommunityIcons name="google" size={24} color="#DB4437" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.socialButton}>
-          <MaterialCommunityIcons
-            name="github"
-            size={24}
-            color={isDarkMode ? '#FFFFFF' : '#000000'}
-          />
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -106,7 +108,7 @@ const getStyles = (isDarkMode: boolean) =>
         : colors['background-light'],
     },
     contentContainer: {
-      flexGrow: 1,
+      flex: 1,
       justifyContent: 'center',
       padding: 24,
     },
@@ -140,10 +142,16 @@ const getStyles = (isDarkMode: boolean) =>
     },
     form: {
       width: '100%',
+      gap: 16,
+    },
+    label: {
+      fontSize: 14,
+      fontWeight: '500',
+      color: isDarkMode ? colors['text-primary-dark'] : colors['text-primary-light'],
+      marginBottom: 8,
     },
     forgotPassword: {
       alignSelf: 'flex-end',
-      marginVertical: 16,
     },
     forgotPasswordText: {
       fontSize: 14,
@@ -174,7 +182,7 @@ const getStyles = (isDarkMode: boolean) =>
       marginTop: 24,
     },
     socialButton: {
-      width: 60,
+      flex: 1,
       height: 50,
       borderRadius: 8,
       borderWidth: 1,
