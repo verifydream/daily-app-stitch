@@ -12,8 +12,8 @@ import {
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import TextInput from '../components/TextInput';
-import Button from '../components/Button';
 import Checkbox from '../components/Checkbox';
+import Button from '../components/Button';
 import { colors } from '../styles/colors';
 import { RootStackParamList } from '../navigation/AppNavigator';
 
@@ -65,14 +65,12 @@ const RegistrationScreen = ({ navigation }: Props) => {
             onChangeText={setName}
             leftIcon="person-outline"
           />
-          <View style={{ height: 16 }} />
           <TextInput
             placeholder="Email"
             value={email}
             onChangeText={setEmail}
             leftIcon="mail-outline"
           />
-          <View style={{ height: 16 }} />
           <TextInput
             placeholder="Kata Sandi"
             value={password}
@@ -80,7 +78,6 @@ const RegistrationScreen = ({ navigation }: Props) => {
             secureTextEntry
             leftIcon="lock-outline"
           />
-          <View style={{ height: 16 }} />
           <TextInput
             placeholder="Konfirmasi Kata Sandi"
             value={confirmPassword}
@@ -173,11 +170,13 @@ const getStyles = (isDarkMode: boolean) =>
     },
     form: {
       width: '100%',
+      gap: 16,
     },
     termsContainer: {
       marginTop: 24,
     },
     termsText: {
+      flex: 1,
       fontSize: 14,
       color: isDarkMode
         ? colors['text-secondary-dark']
